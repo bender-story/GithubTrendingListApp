@@ -1,7 +1,8 @@
-package self.com.githubtrendinglistapp
+package self.com.githubtrendinglistapp.view
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import self.com.githubtrendinglistapp.R
 
 class MainActivity : AppCompatActivity() {
 
