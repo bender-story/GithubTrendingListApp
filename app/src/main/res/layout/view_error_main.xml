@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_centerInParent="true">
+        <ImageView android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:src="@drawable/nointernet_connection"
+                   android:layout_marginBottom="@dimen/margin_24"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/errorHeader"
+                android:layout_marginBottom="@dimen/margin_16"
+                style="@style/errorHeader"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/errorNote"
+                style="@style/errorHeader"/>
 
-</LinearLayout>
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/retryButton"
+            android:layout_width="match_parent"
+            android:background="@drawable/border"
+            android:layout_height="wrap_content"
+            style="@style/buttonStyle"
+            android:text="@string/retry"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/margin_16"/>
+
+</RelativeLayout>

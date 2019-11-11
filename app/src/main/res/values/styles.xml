@@ -10,7 +10,29 @@
 
     <style name="headerTextStyle">
         <item name="android:textSize">@dimen/headerTextSize</item>
-        <item name="android:textColor">@color/headerColor</item>
+        <item name="android:textColor">@color/headerTextColor</item>
+        <item name="android:fontFamily">@font/Roboto-Medium</item>
+    </style>
+
+    <style name="loaderTextStyle">
+        <item name="android:textSize">@dimen/textSize_18</item>
+        <item name="android:textColor">@color/subHeaderTextColor</item>
+        <item name="android:fontFamily">@font/Roboto-Regular</item>
+    </style>
+
+    <style name="errorHeader">
+        <item name="android:textSize">@dimen/textSize_18</item>
+        <item name="android:textColor">@color/subHeaderTextColor</item>
+        <item name="android:fontFamily">@font/Roboto-Bold</item>
+    </style>
+    <style name="errorNote">
+        <item name="android:textSize">@dimen/textSize_15</item>
+        <item name="android:textColor">@color/noteTextColor</item>
+        <item name="android:fontFamily">@font/Roboto-Regular</item>
+    </style>
+    <style name="buttonStyle">
+        <item name="android:textSize">@dimen/textSize_15</item>
+        <item name="android:textColor">@color/buttonColor</item>
         <item name="android:fontFamily">@font/Roboto-Medium</item>
     </style>
 

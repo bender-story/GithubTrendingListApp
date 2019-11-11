@@ -7,7 +7,10 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
 
-    <color name="headerColor">#25282B</color>
-    <color name="loadingTextColor">#4A4A4A</color>
+    <color name="headerTextColor">#25282B</color>
+    <color name="subHeaderTextColor">#4A4A4A</color>
+    <color name="noteTextColor">#929292</color>
+
+    <color name="buttonColor">#31B057</color>
 
 </resources>

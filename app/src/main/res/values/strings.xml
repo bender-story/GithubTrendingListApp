@@ -2,5 +2,11 @@
     <string name="app_name">GitHubTrendingListApp</string>
 
     <string name="header">Trending</string>
+    <string name="loader">Loader..</string>
+
+    <string name="errorHeader">Something went wrong..</string>
+    <string name="errorNote">An alien is probably blocking your signal.</string>
+
+    <string name="retry">Retry</string>
 
 </resources>

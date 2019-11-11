@@ -8,9 +8,24 @@
         android:background="@color/white"
         tools:context=".view.MainActivity">
 
-        <include android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                layout="@layout/view_header_main"
-        android:layout_alignParentTop="true"/>
+    <include
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             layout="@layout/view_header_main"
+             android:layout_alignParentTop="true"/>
+
+    <include android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             layout="@layout/view_loading_main"
+             android:layout_centerInParent="true"
+             android:visibility="gone"
+    />
+    <include android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             layout="@layout/view_error_main"
+             android:layout_below="@+id/header"
+             android:visibility="gone"
+             android:layout_marginBottom="@dimen/margin_16"/>
 
 </RelativeLayout>
