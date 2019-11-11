@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="headerTextStyle">
+        <item name="android:textSize">@dimen/headerTextSize</item>
+        <item name="android:textColor">@color/headerColor</item>
+        <item name="android:fontFamily">@font/Roboto-Medium</item>
+    </style>
+
 </resources>

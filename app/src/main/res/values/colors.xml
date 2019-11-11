@@ -6,4 +6,8 @@
 
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+
+    <color name="headerColor">#25282B</color>
+    <color name="loadingTextColor">#4A4A4A</color>
+
 </resources>

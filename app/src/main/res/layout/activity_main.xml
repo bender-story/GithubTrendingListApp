@@ -8,12 +8,9 @@
         android:background="@color/white"
         tools:context=".view.MainActivity">
 
-    <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/header"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_alignParentTop="true"/>
+        <include android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                layout="@layout/view_header_main"
+        android:layout_alignParentTop="true"/>
 
 </RelativeLayout>
