@@ -5,6 +5,7 @@ import io.reactivex.schedulers.Schedulers
 import self.com.githubtrendinglistapp.Constants.NEWS_API_BASE_URL
 import self.com.githubtrendinglistapp.ServiceType
 import self.com.githubtrendinglistapp.datamodel.Repositories
+import self.com.githubtrendinglistapp.datamodel.TrendingData
 import self.com.githubtrendinglistapp.network.MockServiceImpl
 
 class AppServiceRepo(serviceType: ServiceType){
@@ -18,7 +19,7 @@ class AppServiceRepo(serviceType: ServiceType){
         }
     }
     // gets the repository list from service
-    fun getRepositoriesList(onSuccess: (Repositories) -> Unit,
+    fun getRepositoriesList(onSuccess: (TrendingData?) -> Unit,
                      onError: (String) -> Unit){
 
         serviceInterface!!.fetchTrendingRepositories()

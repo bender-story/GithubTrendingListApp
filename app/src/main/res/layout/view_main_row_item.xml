@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+>
+
+    <data>
+
+        <variable
+                name="viewModel"
+                type="self.com.githubtrendinglistapp.viewmodel.MainRowViewModel"/>
+    </data>
+<LinearLayout
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="horizontal"
@@ -9,6 +21,7 @@
             android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
+            imageURL="@{viewModel.result.avatar}"
             android:layout_margin="@dimen/margin_16"/>
 
     <LinearLayout
@@ -24,20 +37,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
                 style="@style/rowRegularStyle"
-                android:text="@string/errorNote"/>
+                android:text="@{viewModel.result.author}"/>
 
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
                 style="@style/rowMediumStyle"
-                android:text="@string/errorNote"/>
+                android:text="@{viewModel.result.name}"/>
         <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_8"
                 style="@style/rowRegularStyle"
-                android:text="@string/errorNote"/>
+                android:text="@{viewModel.result.description}"/>
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
                       android:orientation="horizontal"
@@ -51,6 +64,8 @@
                     android:drawableLeft="@drawable/circle"
                     android:drawablePadding="@dimen/margin_4"
                     android:layout_marginRight="@dimen/margin_16"
+                    android:text="@{viewModel.result.language}"
+                    app:visibleOnText="@{viewModel.result.language}"
             />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -58,8 +73,11 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="@dimen/margin_4"
+                    android:drawableLeft="@drawable/star_yellow"
                     style="@style/rowRegularStyle"
                     android:layout_marginRight="@dimen/margin_16"
+                    android:text="@{viewModel.result.stars}"
+                    app:visibleOnText="@{viewModel.result.stars}"
             />
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -67,8 +85,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawablePadding="@dimen/margin_4"
-                    android:drawableLeft="@drawable/fork-black-16"
+                    android:drawableLeft="@drawable/fork_black"
                     style="@style/rowRegularStyle"
+                    android:text="@{viewModel.result.forks}"
+                    app:visibleOnText="@{viewModel.result.forks}"
 
             />
 
@@ -78,3 +98,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</layout>
