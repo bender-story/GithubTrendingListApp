@@ -11,6 +11,8 @@
     <color name="subHeaderTextColor">#4A4A4A</color>
     <color name="noteTextColor">#929292</color>
 
+    <color name="rowTextColor">#52575C</color>
+
     <color name="buttonColor">#31B057</color>
 
 </resources>

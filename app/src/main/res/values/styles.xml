@@ -36,4 +36,15 @@
         <item name="android:fontFamily">@font/Roboto-Medium</item>
     </style>
 
+    <style name="rowRegularStyle">
+        <item name="android:textSize">@dimen/textSize_12</item>
+        <item name="android:textColor">@color/rowTextColor</item>
+        <item name="android:fontFamily">@font/Roboto-Regular</item>
+    </style>
+    <style name="rowMediumStyle">
+        <item name="android:textSize">@dimen/textSize_15</item>
+        <item name="android:textColor">@color/rowTextColor</item>
+        <item name="android:fontFamily">@font/Roboto-Medium</item>
+    </style>
+
 </resources>
