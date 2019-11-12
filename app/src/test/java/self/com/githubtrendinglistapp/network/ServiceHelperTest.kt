@@ -15,4 +15,9 @@ class ServiceHelperTest :BaseTest(){
         Assert.assertTrue(serviceAPIHelper.getServiceinterface() is ServiceInterface)
     }
 
+    @Test
+    fun `check if instance of ServiceInterface is mockServiceImpl`(){
+        var serviceAPIHelper=ServiceAPIHelper(ServiceType.MOCK)
+        Assert.assertTrue(serviceAPIHelper.getServiceinterface() is MockServiceImpl)
+    }
 }

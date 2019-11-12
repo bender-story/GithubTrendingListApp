@@ -95,7 +95,6 @@ dependencies {
 
     // Koin testing tools
     testImplementation "org.koin:koin-test:2.0.1"
-    implementation 'org.koin:koin-android-viewmodel:1.0.2'
     implementation 'androidx.lifecycle:lifecycle-runtime:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
     implementation 'androidx.lifecycle:lifecycle-reactivestreams:2.0.0'
