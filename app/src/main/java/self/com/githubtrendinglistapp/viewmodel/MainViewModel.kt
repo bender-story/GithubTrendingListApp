@@ -21,20 +21,27 @@ class MainViewModel : ViewModel(),KoinComponent {
 //    var showError=ObservableBoolean(false)
 //    var showLoader=ObservableBoolean(false)
 
-    // call service to fetch movie list and update the mutable list.
+    // call service to fetch trending list from the github and update the mutable list
     fun  fetchTrendingList(
-        onSuccess: () -> Unit,
+        onSuccess: (List<Repositories>?) -> Unit,
         onError: (String) -> Unit
     ) {
-        onSuccess.invoke()
+
         appServiceRepo.getRepositoriesList({ response ->
+            onSuccess.invoke(response)
             trendingList.postValue(response)
             LocalCache.repositoriesList=response
-            callServiceEveryTwoHours(onSuccess)
+            callServiceEveryTwoHours()
         }, {
+            if(LocalCache.repositoriesList.isNullOrEmpty()) {
+                onSuccess.invoke(LocalCache.repositoriesList)
+                trendingList.postValue(LocalCache.repositoriesList)
+            }
+            else
             onError.invoke(it)
         })
     }
+
 
     fun getMainRowViewModel(): List<MainRowViewModel>? {
        return trendingList.value?.map {
@@ -42,7 +49,7 @@ class MainViewModel : ViewModel(),KoinComponent {
         }
     }
 
-    fun callServiceEveryTwoHours( execute: () -> Unit){
+    fun callServiceEveryTwoHours( ){
         timer.scheduleAtFixedRate(
             object : TimerTask() {
 
