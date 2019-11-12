@@ -25,12 +25,4 @@ class MainAdapter(val items: ArrayList<MainRowViewModel>?) : RecyclerView.Adapte
             binding.executePendingBindings()
         }
     }
-
-    fun add(mainRowViewModel: MainRowViewModel) {
-        val position = items?.indexOf(mainRowViewModel)
-        if (position!! == -1) {
-            items?.add(mainRowViewModel)
-            notifyItemInserted(items?.size!! - 1)
-        }
-    }
 }

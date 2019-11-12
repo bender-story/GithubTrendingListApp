@@ -19,7 +19,7 @@ class AppServiceRepo(serviceType: ServiceType){
         }
     }
     // gets the repository list from service
-    fun getRepositoriesList(onSuccess: (TrendingData?) -> Unit,
+    fun getRepositoriesList(onSuccess: (List<Repositories>?) -> Unit,
                      onError: (String) -> Unit){
 
         serviceInterface!!.fetchTrendingRepositories()

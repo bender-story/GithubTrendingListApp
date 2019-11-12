@@ -7,24 +7,23 @@ import com.android.rahul.movies.network.AppServiceRepo
 import self.com.githubtrendinglistapp.ServiceType
 import self.com.githubtrendinglistapp.datamodel.Repositories
 
-class MainViewModel :   ViewModel() {
+class MainViewModel : ViewModel() {
     val trendingList: MutableLiveData<List<Repositories>?> = MutableLiveData()
     private val appServiceRepo = AppServiceRepo(ServiceType.API)
-    var showError=ObservableBoolean(false)
-    var showLoader=ObservableBoolean(false)
+//    var viewState:ViewState=ViewState.LOADER
+//    var showError=ObservableBoolean(false)
+//    var showLoader=ObservableBoolean(false)
 
     // call service to fetch movie list and update the mutable list.
     fun fetchTrendingList(
         onSuccess: () -> Unit,
         onError: (String) -> Unit
     ) {
+        onSuccess.invoke()
         appServiceRepo.getRepositoriesList({ response ->
-            resetOtherData()
-            trendingList.postValue(response?.list)
-            onSuccess.invoke()
+            trendingList.postValue(response)
+
         }, {
-           resetOtherData()
-            if(trendingList.value!=null) showError.set(true)
             onError.invoke(it)
         })
     }
@@ -34,9 +33,10 @@ class MainViewModel :   ViewModel() {
             MainRowViewModel(it)
         }
     }
-
-    private fun resetOtherData(){
-        showError.set(false)
-        showLoader.set(false)
-    }
 }
+
+ enum class ViewState{
+     LOADER,
+     ERROR,
+     SHOW_LIST
+ }
