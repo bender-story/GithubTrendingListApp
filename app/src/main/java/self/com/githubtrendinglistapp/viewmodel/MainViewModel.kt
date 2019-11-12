@@ -27,7 +27,7 @@ class MainViewModel : ViewModel() {
         appServiceRepo.getRepositoriesList({ response ->
             trendingList.postValue(response)
             LocalCache.repositoriesList=response
-
+            callServiceEveryTwoHours(onSuccess)
         }, {
             onError.invoke(it)
         })
@@ -44,7 +44,9 @@ class MainViewModel : ViewModel() {
             object : TimerTask() {
 
                 override fun run() {
-                    execute.invoke()
+                    AppServiceRepo(ServiceType.API).getRepositoriesList({
+                        LocalCache.repositoriesList=it
+                    },{})
                 }
             },
             twoHoursPeriod, twoHoursPeriod

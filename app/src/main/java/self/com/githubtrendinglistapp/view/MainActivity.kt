@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun fetchData(){
-        changeState(ViewState.LOADER)
+    private fun fetchData(refresh:Boolean=false){
+        if(!refresh)changeState(ViewState.LOADER)
         if(!NetworkUtils.isNetworkAvailable(this))
             changeState(ViewState.ERROR)
         else
@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun fetchTrendingList(){
         viewModel?.fetchTrendingList({
-            setTimer()
         },{
             changeUI(false,ViewState.ERROR)
         })
@@ -75,13 +74,7 @@ class MainActivity : AppCompatActivity() {
             changeState(viewState)
     }
 
-    private fun setTimer(){
-        viewModel?.callServiceEveryTwoHours {
-            runOnUiThread {
-                this@MainActivity.fetchData()
-            }
-        }
-    }
+
 
     private fun callRetry(){
         retryButton.setOnClickListener {
@@ -94,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     private fun pullToRefresh(){
         refresh.setOnRefreshListener{
             showRefesh(true)
-            fetchData()
+            fetchData(true)
 
         }
     }
