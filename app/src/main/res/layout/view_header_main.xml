@@ -13,5 +13,5 @@
             android:text="@string/header"
             />
 
-<include layout="@layout/view_line"/>
+<!--<include layout="@layout/view_line"/>-->
 </LinearLayout>

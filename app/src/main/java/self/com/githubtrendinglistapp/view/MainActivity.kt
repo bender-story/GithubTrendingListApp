@@ -45,6 +45,7 @@ class MainActivity : AppCompatActivity() {
                 rowViewModels= viewModel?.getMainRowViewModel() as ArrayList<MainRowViewModel>?
             // Add list to adapter using UI Thread
         uiThread {
+                changeUI(false,ViewState.SHOW_LIST)
                 mainRecyclerView.adapter = MainAdapter(rowViewModels)
                 mainRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity) as RecyclerView.LayoutManager?
             }
@@ -58,13 +59,28 @@ class MainActivity : AppCompatActivity() {
         if(!NetworkUtils.isNetworkAvailable(this))
             changeState(ViewState.ERROR)
         else
-            viewModel?.fetchTrendingList({
-                showRefesh(false)
-                changeState(ViewState.SHOW_LIST)
-            },{
-                showRefesh(false)
-                changeState(ViewState.ERROR)
-            })
+            fetchTrendingList()
+    }
+
+    private fun fetchTrendingList(){
+        viewModel?.fetchTrendingList({
+            setTimer()
+        },{
+            changeUI(false,ViewState.ERROR)
+        })
+    }
+
+    private fun changeUI(showRefresh: Boolean,viewState: ViewState){
+            showRefesh(showRefresh)
+            changeState(viewState)
+    }
+
+    private fun setTimer(){
+        viewModel?.callServiceEveryTwoHours {
+            runOnUiThread {
+                this@MainActivity.fetchData()
+            }
+        }
     }
 
     private fun callRetry(){
@@ -74,14 +90,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun changeState(viewState:ViewState=ViewState.LOADER){
-        when(viewState){
-            ViewState.LOADER->changeState(true,false,false)
-            ViewState.ERROR->changeState(false,true,false)
-            ViewState.SHOW_LIST->changeState(false,false,true)
-
-        }
-    }
 
     private fun pullToRefresh(){
         refresh.setOnRefreshListener{
@@ -95,6 +103,14 @@ class MainActivity : AppCompatActivity() {
         refresh.isRefreshing=show
     }
 
+    private fun changeState(viewState:ViewState=ViewState.LOADER){
+        when(viewState){
+            ViewState.LOADER->changeState(true,false,false)
+            ViewState.ERROR->changeState(false,true,false)
+            ViewState.SHOW_LIST->changeState(false,false,true)
+
+        }
+    }
     private fun changeState(loader:Boolean,error: Boolean,recyclerView: Boolean){
         loaderView.makeVisible(loader)
         errorView.makeVisible(error)

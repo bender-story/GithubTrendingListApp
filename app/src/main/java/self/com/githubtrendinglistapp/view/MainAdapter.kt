@@ -11,7 +11,7 @@ class MainAdapter(val items: ArrayList<MainRowViewModel>?) : RecyclerView.Adapte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ViewMainRowItemBinding.inflate(inflater)
+        val binding = ViewMainRowItemBinding.inflate(inflater,parent,false)
         return ViewHolder(binding)
     }
 

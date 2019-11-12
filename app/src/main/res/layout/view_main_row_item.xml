@@ -14,90 +14,96 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:background="@color/white">
-
-        <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="@dimen/imageSize"
-
-                android:layout_height="@dimen/imageSize"
-                app:getImage="@{viewModel.result.avatar}"
-                android:layout_margin="@dimen/margin_16"/>
-
+        <include layout="@layout/view_line"/>
         <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_16"
-                android:layout_marginRight="@dimen/margin_16"
-                android:layout_marginBottom="@dimen/margin_16"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:background="@color/white">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_8"
-                    style="@style/rowRegularStyle"
-                    android:text="@{viewModel.result.author}"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/imageSize"
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_8"
-                    style="@style/rowMediumStyle"
-                    android:text="@{viewModel.result.name}"/>
-            <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin_8"
-                    style="@style/rowRegularStyle"
-                    android:text="@{viewModel.result.description}"/>
+                    android:layout_height="@dimen/imageSize"
+                    app:getImage="@{viewModel.result.avatar}"
+                    android:layout_margin="@dimen/margin_16"/>
 
             <LinearLayout
                     android:layout_width="match_parent"
-
                     android:layout_height="wrap_content"
-                          android:orientation="horizontal"
-                          android:weightSum="3">
+                    android:layout_marginTop="@dimen/margin_16"
+                    android:layout_marginRight="@dimen/margin_16"
+                    android:layout_marginBottom="@dimen/margin_16"
+                    android:orientation="vertical">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_8"
                         style="@style/rowRegularStyle"
-                        android:layout_weight="1"
-                        android:drawableLeft="@drawable/circle"
-                        android:drawablePadding="@dimen/margin_4"
-                        android:layout_marginRight="@dimen/margin_16"
-                        android:text="@{viewModel.result.language}"
-                        app:visibleOnText="@{viewModel.result.language}"
-                />
+                        android:text="@{viewModel.result.author}"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawablePadding="@dimen/margin_4"
-                        android:drawableLeft="@drawable/star_yellow"
-                        style="@style/rowRegularStyle"
-                        android:layout_marginRight="@dimen/margin_16"
-                        android:text="@{viewModel.getStars()}"
-                        app:visibleOnText="@{viewModel.getStars()}"
-                />
-
+                        android:layout_marginBottom="@dimen/margin_8"
+                        style="@style/rowMediumStyle"
+                        android:text="@{viewModel.result.name}"/>
                 <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:drawablePadding="@dimen/margin_4"
-                        android:drawableLeft="@drawable/fork_black"
+                        android:layout_marginBottom="@dimen/margin_8"
                         style="@style/rowRegularStyle"
-                        android:text="@{viewModel.getForks()}"
-                        app:visibleOnText="@{viewModel.getForks()}"
+                        android:text="@{viewModel.result.description}"/>
 
-                />
+                <LinearLayout
+                        android:layout_width="match_parent"
+
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            style="@style/rowRegularStyle"
+                            android:layout_weight="1"
+                            android:drawableLeft="@drawable/circle"
+                            android:drawablePadding="@dimen/margin_4"
+                            android:layout_marginRight="@dimen/margin_16"
+                            android:text="@{viewModel.result.language}"
+                            app:visibleOnText="@{viewModel.result.language}"
+                    />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/margin_4"
+                            android:drawableLeft="@drawable/star_yellow"
+                            style="@style/rowRegularStyle"
+                            android:layout_marginRight="@dimen/margin_16"
+                            android:text="@{viewModel.getStars()}"
+                            app:visibleOnText="@{viewModel.getStars()}"
+                    />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:drawablePadding="@dimen/margin_4"
+                            android:drawableLeft="@drawable/fork_black"
+                            style="@style/rowRegularStyle"
+                            android:text="@{viewModel.getForks()}"
+                            app:visibleOnText="@{viewModel.getForks()}"
+
+                    />
+
+                </LinearLayout>
 
             </LinearLayout>
-
-
         </LinearLayout>
 
     </LinearLayout>
