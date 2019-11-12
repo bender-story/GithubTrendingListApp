@@ -27,7 +27,15 @@
              android:layout_height="wrap_content"
              layout="@layout/view_error_main"
              android:layout_below="@+id/header"
+             android:visibility="gone"
              android:layout_marginBottom="@dimen/margin_16"/>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
+            android:layout_below="@+id/header"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:layout_width="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/mainRecyclerView"
@@ -35,5 +43,6 @@
             android:layout_below="@+id/header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

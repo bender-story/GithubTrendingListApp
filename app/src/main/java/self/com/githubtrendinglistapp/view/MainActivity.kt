@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         observeList()
         callRetry()
         fetchData()
+        pullToRefresh()
     }
 
     private fun observeList() {
@@ -58,8 +59,10 @@ class MainActivity : AppCompatActivity() {
             changeState(ViewState.ERROR)
         else
             viewModel?.fetchTrendingList({
+                showRefesh(false)
                 changeState(ViewState.SHOW_LIST)
             },{
+                showRefesh(false)
                 changeState(ViewState.ERROR)
             })
     }
@@ -80,9 +83,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun pullToRefresh(){
+        refresh.setOnRefreshListener{
+            showRefesh(true)
+            fetchData()
+
+        }
+    }
+
+    private fun showRefesh(show:Boolean){
+        refresh.isRefreshing=show
+    }
+
     private fun changeState(loader:Boolean,error: Boolean,recyclerView: Boolean){
         loaderView.makeVisible(loader)
         errorView.makeVisible(error)
-        mainRecyclerView.makeVisible(recyclerView)
+        refresh.makeVisible(recyclerView)
     }
 }
