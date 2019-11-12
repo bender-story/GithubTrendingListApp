@@ -2,27 +2,23 @@ package com.android.rahul.movies.network
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers
+import org.koin.core.KoinComponent
+import org.koin.core.inject
+import org.koin.core.parameter.parametersOf
 import self.com.githubtrendinglistapp.Constants.NEWS_API_BASE_URL
 import self.com.githubtrendinglistapp.ServiceType
 import self.com.githubtrendinglistapp.datamodel.Repositories
 import self.com.githubtrendinglistapp.datamodel.TrendingData
 import self.com.githubtrendinglistapp.network.MockServiceImpl
+import self.com.githubtrendinglistapp.network.ServiceAPIHelper
 
-class AppServiceRepo(serviceType: ServiceType){
-    private var serviceInterface:ServiceInterface?=null
-    init {
-        when(serviceType) {
-            ServiceType.API->
-            serviceInterface =
-                NetworkAPIController.getApiClient(NEWS_API_BASE_URL)?.create(ServiceInterface::class.java)
-            else->NetworkAPIController.getApiClient(NEWS_API_BASE_URL)?.create(MockServiceImpl::class.java)
-        }
-    }
+class AppServiceRepo(serviceType: ServiceType):KoinComponent{
+    val serviceAPIHelper: ServiceAPIHelper by inject{ parametersOf(serviceType) }
     // gets the repository list from service
     fun getRepositoriesList(onSuccess: (List<Repositories>?) -> Unit,
                      onError: (String) -> Unit){
 
-        serviceInterface!!.fetchTrendingRepositories()
+        serviceAPIHelper.getServiceinterface()!!.fetchTrendingRepositories()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(

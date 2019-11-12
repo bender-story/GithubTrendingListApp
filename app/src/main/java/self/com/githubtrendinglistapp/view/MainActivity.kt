@@ -14,17 +14,19 @@ import self.com.githubtrendinglistapp.viewmodel.MainRowViewModel
 import self.com.githubtrendinglistapp.viewmodel.MainViewModel
 import com.android.rahul.movies.utils.NetworkUtils
 import kotlinx.android.synthetic.main.view_error_main.*
+import org.koin.androidx.viewmodel.ext.android.getViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import self.com.githubtrendinglistapp.component.makeVisible
 import self.com.githubtrendinglistapp.viewmodel.ViewState
 
 
 class MainActivity : AppCompatActivity() {
-    var viewModel: MainViewModel? = null
+    private val viewModel by viewModel<MainViewModel>()
     private var rowViewModels: ArrayList<MainRowViewModel>? = arrayListOf()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+//        viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         supportActionBar?.hide()
         observeList()
         callRetry()
