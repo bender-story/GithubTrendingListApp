@@ -3,18 +3,16 @@ package self.com.githubtrendinglistapp.view
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.uiThread
 import self.com.githubtrendinglistapp.R
 import self.com.githubtrendinglistapp.viewmodel.MainRowViewModel
 import self.com.githubtrendinglistapp.viewmodel.MainViewModel
 import com.android.rahul.movies.utils.NetworkUtils
 import kotlinx.android.synthetic.main.view_error_main.*
-import org.koin.androidx.viewmodel.ext.android.getViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import self.com.githubtrendinglistapp.component.makeVisible
 import self.com.githubtrendinglistapp.viewmodel.ViewState
@@ -49,16 +47,13 @@ class MainActivity : AppCompatActivity() {
      * load recyclerview with latest changes
      */
     private fun initRecyclerView() {
-        doAsync {
+        GlobalScope.launch(Dispatchers.Main) {
 
-                rowViewModels= viewModel?.getMainRowViewModel() as ArrayList<MainRowViewModel>?
+            rowViewModels = viewModel?.getMainRowViewModel() as ArrayList<MainRowViewModel>?
             // Add list to adapter using UI Thread
-        uiThread {
-                changeUI(false,ViewState.SHOW_LIST)
-                mainRecyclerView.adapter = MainAdapter(rowViewModels)
-                mainRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity) as RecyclerView.LayoutManager?
-            }
-
+            changeUI(false, ViewState.SHOW_LIST)
+            mainRecyclerView.adapter = MainAdapter(rowViewModels)
+            mainRecyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
         }
 
     }
