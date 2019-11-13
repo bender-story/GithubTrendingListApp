@@ -8,7 +8,15 @@ import retrofit2.mock.BehaviorDelegate
 import self.com.githubtrendinglistapp.datamodel.Repositories
 import self.com.githubtrendinglistapp.datamodel.TrendingData
 
+/**
+ * Mock service Interface
+ *
+ */
 class MockServiceImpl(private val delegate: BehaviorDelegate<ServiceInterface>) :ServiceInterface{
+
+    /**
+     * get repository list from the service
+     */
     override fun fetchTrendingRepositories(): Observable<List<Repositories>> {
         var json:String= getMockJSON()
 

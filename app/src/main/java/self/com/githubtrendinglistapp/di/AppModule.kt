@@ -6,7 +6,10 @@ import org.koin.dsl.module
 import self.com.githubtrendinglistapp.ServiceType
 import self.com.githubtrendinglistapp.network.ServiceAPIHelper
 import self.com.githubtrendinglistapp.viewmodel.MainViewModel
-
+/**
+ * App Module to load all the Koin injections
+ *
+ */
 val appModule= module {
     factory { (serviceType : ServiceType) -> AppServiceRepo(serviceType) }
     factory { (serviceType : ServiceType) -> ServiceAPIHelper(serviceType) }

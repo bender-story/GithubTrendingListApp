@@ -9,12 +9,17 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.net.CookieManager
 import java.net.CookiePolicy
 import java.util.concurrent.TimeUnit
-
+/**
+ * Retrofit Interceptor class
+ *
+ */
 
 object NetworkAPIController {
     private var retrofit: Retrofit? = null
-
-    // Retrofit initializer.
+    /**
+     * Retrofit initializer.
+     */
+    //
     fun getApiClient(url: String): Retrofit? {
         val interceptor = HttpLoggingInterceptor()
         val cookieManager = CookieManager()

@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import self.com.githubtrendinglistapp.viewmodel.MainRowViewModel
 import self.com.githubtrendinglistapp.databinding.ViewMainRowItemBinding
 
-// Main List adapter
+/**
+ * Main Adapter this the adapter used to load
+ * the data in the recyclerview of Main activity
+ */
 class MainAdapter(val items: ArrayList<MainRowViewModel>?) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

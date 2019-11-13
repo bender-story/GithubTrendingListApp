@@ -7,7 +7,11 @@ import retrofit2.mock.MockRetrofit
 import retrofit2.mock.NetworkBehavior
 import self.com.githubtrendinglistapp.Constants
 import self.com.githubtrendinglistapp.ServiceType
-
+/**
+ * Service helper class that helps to create either service Interface
+ * Mock service Interface
+ *
+ */
 class ServiceAPIHelper(serviceType: ServiceType){
     private var serviceInterface: ServiceInterface?=null
     init {
@@ -22,7 +26,9 @@ class ServiceAPIHelper(serviceType: ServiceType){
     fun getServiceinterface(): ServiceInterface? {
         return serviceInterface
     }
-
+    /**
+     * returns a mock service interface object
+     */
     fun createMockServiceImpl(): ServiceInterface {
         val retrofit = NetworkAPIController.getApiClient(Constants.NEWS_API_BASE_URL)
         val behavior = NetworkBehavior.create()

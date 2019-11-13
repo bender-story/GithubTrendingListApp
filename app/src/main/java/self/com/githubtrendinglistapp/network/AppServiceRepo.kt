@@ -5,16 +5,23 @@ import io.reactivex.schedulers.Schedulers
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.koin.core.parameter.parametersOf
-import self.com.githubtrendinglistapp.Constants.NEWS_API_BASE_URL
 import self.com.githubtrendinglistapp.ServiceType
 import self.com.githubtrendinglistapp.datamodel.Repositories
-import self.com.githubtrendinglistapp.datamodel.TrendingData
-import self.com.githubtrendinglistapp.network.MockServiceImpl
 import self.com.githubtrendinglistapp.network.ServiceAPIHelper
+
+/**
+ * App service repo fetchs data for the viewmodel
+ * helps to load data in database
+ *
+ */
 
 class AppServiceRepo(serviceType: ServiceType):KoinComponent{
     val serviceAPIHelper: ServiceAPIHelper by inject{ parametersOf(serviceType) }
-    // gets the repository list from service
+    /**
+     * get repository list from the service
+     * @param onSuccess success callback
+     * @param onSuccess error callback
+     */
     fun getRepositoriesList(onSuccess: (List<Repositories>?) -> Unit,
                      onError: (String) -> Unit){
 

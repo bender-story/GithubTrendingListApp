@@ -7,6 +7,7 @@ import org.koin.core.inject
 
 import self.com.githubtrendinglistapp.BaseTest
 import self.com.githubtrendinglistapp.LocalCache
+import self.com.githubtrendinglistapp.datamodel.Repositories
 
 class MainViewModelTest :BaseTest(){
     private val viewModel: MainViewModel by inject()
@@ -50,10 +51,34 @@ class MainViewModelTest :BaseTest(){
             Assert.assertTrue(LocalCache.repositoriesList?.size==2)
 
 
-            Assert.assertTrue(LocalCache.repositoriesList?.get(1)?.author  =="AceLewis")
-            Assert.assertTrue(LocalCache.repositoriesList?.get(1)?.language  =="Python")
+            Assert.assertEquals("AceLewis",LocalCache.repositoriesList?.get(1)?.author)
+            Assert.assertEquals("Python",LocalCache.repositoriesList?.get(1)?.language )
         },{
             assert(false)
         })
+    }
+
+    @Test
+    fun `getMainRowViewModel is not null or empty`(){
+        viewModel.fetchTrendingList({},{})
+       var list= viewModel.getMainRowViewModel()
+        Assert.assertTrue(!list.isNullOrEmpty())
+        Assert.assertTrue(list?.size==2)
+
+    }
+
+    @Test
+    fun `getMainRowViewModel has values`(){
+        viewModel.trendingList.postValue(listOf(Repositories("AceLewis","", listOf(),0,"",0,"Python","","",0,"")))
+        var list= viewModel.getMainRowViewModel()
+        Assert.assertEquals("AceLewis",list?.get(0)?.result?.author)
+        Assert.assertEquals("Python",list?.get(0)?.result?.language )
+
+    }
+
+    @Test
+    fun `getMainRowViewModel should be null`(){
+        var list= viewModel.getMainRowViewModel()
+        Assert.assertTrue(list.isNullOrEmpty())
     }
 }

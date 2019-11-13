@@ -12,7 +12,9 @@ import self.com.githubtrendinglistapp.datamodel.Repositories
 import self.com.githubtrendinglistapp.Constants.twoHoursPeriod
 import java.util.*
 
-
+/**
+ * ViewModel for the Main Activity
+ */
 class MainViewModel : ViewModel(),KoinComponent {
     val trendingList: MutableLiveData<List<Repositories>?> = MutableLiveData()
     val appServiceRepo: AppServiceRepo by inject{parametersOf(ServiceType.API)}
@@ -20,8 +22,9 @@ class MainViewModel : ViewModel(),KoinComponent {
 //    var viewState:ViewState=ViewState.LOADER
 //    var showError=ObservableBoolean(false)
 //    var showLoader=ObservableBoolean(false)
-
-    // call service to fetch trending list from the github and update the mutable list
+    /**
+     *  call service to fetch trending list from the github and update the mutable list
+     */
     fun  fetchTrendingList(
         onSuccess: (List<Repositories>?) -> Unit,
         onError: (String) -> Unit
@@ -42,13 +45,17 @@ class MainViewModel : ViewModel(),KoinComponent {
         })
     }
 
-
+    /**
+     *  Create a MainRowViewModel list from the mutable list
+     */
     fun getMainRowViewModel(): List<MainRowViewModel>? {
        return trendingList.value?.map {
             MainRowViewModel(it)
         }
     }
-
+    /**
+     * create timer to call service and fetch data every 2 hours
+     */
     fun callServiceEveryTwoHours( ){
         timer.scheduleAtFixedRate(
             object : TimerTask() {
